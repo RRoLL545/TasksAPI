@@ -122,8 +122,8 @@ export class TasksService {
     userId: number
   ): Promise<number>{
     const task = await this.getTaskById(taskId);
-    await this._taskNotAllowedErrorCheck(
-      task.author_id,
+    task.author.id && this._taskNotAllowedErrorCheck(
+      task.author.id,
       userId,
     );
     await task.destroy();
