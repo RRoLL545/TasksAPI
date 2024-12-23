@@ -6,6 +6,7 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -16,6 +17,7 @@ import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import { ValidationPipe } from "../pipes/validation.pipe";
 
 @ApiTags('Получение задач по параметрам')
+@ApiBearerAuth('JWT-auth')
 @Controller('get-tasks')
 export class GetTasksController {
 

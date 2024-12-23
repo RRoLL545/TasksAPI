@@ -5,6 +5,7 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -15,6 +16,7 @@ import { User } from "./user.model";
 import { ValidationPipe } from "../pipes/validation.pipe";
 
 @ApiTags('Пользователи')
+@ApiBearerAuth('JWT-auth')
 @Controller('users')
 export class UsersController {
 

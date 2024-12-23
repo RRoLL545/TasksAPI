@@ -13,6 +13,15 @@ async function start() {
     .setDescription('Документация REST API')
     .setVersion('1.0.0')
     .addTag('IQ Group')
+    .addBearerAuth({
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+        description: 'Enter JWT token',
+        in: 'header',
+      },
+      'JWT-auth',)
     .build();
   const document = SwaggerModule.createDocument(
     app,

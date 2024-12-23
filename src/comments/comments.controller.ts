@@ -7,6 +7,7 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiResponse, ApiTags,
 } from "@nestjs/swagger";
@@ -17,6 +18,7 @@ import { Comment } from "./comment.model";
 import { CreateCommentDto } from "./dto/create-comment.dto";
 
 @ApiTags('Комментарии')
+@ApiBearerAuth('JWT-auth')
 @Controller('comments')
 export class CommentsController {
 

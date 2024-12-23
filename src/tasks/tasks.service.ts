@@ -50,10 +50,11 @@ export class TasksService {
     id: number,
   ): Promise<Task> {
     const task = await this.getTaskById(dto.id);
-    this._taskNotAllowedErrorCheck(
-      task.author_id,
-      id,
-    );
+
+    task.author.id && this._taskNotAllowedErrorCheck(
+          task.author.id,
+          id,
+        );
 
     task.title = dto.title;
     if (dto.content) task.content = dto.content;
@@ -75,8 +76,8 @@ export class TasksService {
     const responsibleUser = dto.responsibleUserId
       ? await this._usersService.getUserById(dto.responsibleUserId)
       : null;
-    this._taskNotAllowedErrorCheck(
-      task.author_id,
+    task.author.id && this._taskNotAllowedErrorCheck(
+      task.author.id,
       id,
     );
 
@@ -99,7 +100,7 @@ export class TasksService {
   ): Promise<Task> {
     const task = await this.getTaskById(dto.taskId);
     const status = await this._statusService.getStatusById(dto.statusId);
-    if (task.author_id !== id && task.responsible_id !== id)
+    if (task.author.id !== id && task.responsible.id !== id)
       throw new HttpException(
         'Этому пользователю не позволено изменять эту задачу',
         HttpStatus.METHOD_NOT_ALLOWED,
@@ -121,7 +122,7 @@ export class TasksService {
     userId: number
   ): Promise<number>{
     const task = await this.getTaskById(taskId);
-    this._taskNotAllowedErrorCheck(
+    await this._taskNotAllowedErrorCheck(
       task.author_id,
       userId,
     );

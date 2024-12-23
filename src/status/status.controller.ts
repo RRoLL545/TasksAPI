@@ -6,6 +6,7 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -17,6 +18,7 @@ import { CreateStatusDto } from "./dto/create-status.dto";
 import { Status } from "./status.model";
 
 @ApiTags('Статусы')
+@ApiBearerAuth('JWT-auth')
 @Controller('status')
 export class StatusController {
 

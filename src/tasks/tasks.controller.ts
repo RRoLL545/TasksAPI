@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { TasksService } from "./tasks.service";
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -24,6 +25,7 @@ import { SetTaskResponsibleDto } from "./dto/set-task-responsible.dto";
 import { SetTaskStatusDto } from "./dto/set-task-status.dto";
 
 @ApiTags('Задачи')
+@ApiBearerAuth('JWT-auth')
 @Controller('task')
 export class TasksController {
 

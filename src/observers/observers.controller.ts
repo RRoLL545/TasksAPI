@@ -7,6 +7,7 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiResponse, ApiTags,
 } from "@nestjs/swagger";
@@ -17,6 +18,7 @@ import { Observer } from "./observer.model";
 import { CreateObserverDto } from "./dto/create-observer.dto";
 
 @ApiTags('Наблюдатели')
+@ApiBearerAuth('JWT-auth')
 @Controller('observers')
 export class ObserversController {
 
